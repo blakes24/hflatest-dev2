@@ -1,4 +1,4 @@
-name: Push To Production
+name: Sync Production
 
 on: workflow_dispatch
 
@@ -9,7 +9,7 @@ jobs:
       - name: git-sync
         uses: wei/git-sync@v3
         with:
-          source_repo: "blakes24/hflatest-dev2"
+          source_repo: "https://blakes24:${{ secrets.ACCESS_TOKEN }}@github.com/blakes24/hflatest-dev2.git"
           source_branch: "main"
-          destination_repo: "blakes24/hflatest-prod2"
+          destination_repo: "https://blakes24:${{ secrets.ACCESS_TOKEN }}@github.com/blakes24/hflatest-prod2"
           destination_branch: "main"
