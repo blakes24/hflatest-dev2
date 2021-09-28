@@ -8,13 +8,14 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v2
-    - name: Push directory to another repository
-      uses: cpina/github-action-push-to-another-repository@v1.3
+    - name: Pushes to Repository
+      uses: tech-thinker/push-to-repo@main
       env:
         API_TOKEN_GITHUB: ${{ secrets.ACCESS_TOKEN }}
       with:
-        source-directory: './'
+        user-name: "blakes24"
+        user-email: blakes24@gmail.com
+        source-directory: "./"
         destination-github-username: 'blakes24'
         destination-repository-name: 'hflatest-prod2'
-        user-email: 'blakes24@gmail.com'
         target-branch: main
