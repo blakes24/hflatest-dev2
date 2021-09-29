@@ -1,20 +1,17 @@
-name: Push To Production
+name: Deploy to Production
 
 on: workflow_dispatch
 
 jobs:
-  push-changes:
+  git-sync:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout
-      uses: actions/checkout@v2
-    - name: Push directory to another repository
-      uses: cpina/github-action-push-to-another-repository@v1.3
-      env:
-        API_TOKEN_GITHUB: ${{ secrets.ACCESS_TOKEN }}
-      with:
-        source-directory: './'
-        destination-github-username: 'blakes24'
-        destination-repository-name: 'hflatest-prod2'
-        user-email: 'blakes24@gmail.com'
-        target-branch: main
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: git-sync
+        uses: wei/git-sync@v3
+        with:
+          source_repo: "https://blakes24:${{ secrets.ACCESS_TOKEN }}@github.com/blakes24/hflatest-dev2.git"
+          source_branch: "main"
+          destination_repo: "https://blakes24:${{ secrets.ACCESS_TOKEN }}@github.com/blakes24/hflatest-prod2"
+          destination_branch: "main"
