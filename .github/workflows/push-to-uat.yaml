@@ -1,0 +1,16 @@
+name: Deploy to GitHub Pages
+
+on: workflow_dispatch
+
+jobs:
+  push-to-branch:
+    runs-on: ubuntu-latest
+    steps:
+- name: Push to uat branch
+  uses: Automattic/action-commit-to-branch@master
+  with:
+    dest_branch: 'uat'
+    source_branch: 'main'
+    commit_message: 'update UAT'
+  env:
+    GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
