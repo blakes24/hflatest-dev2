@@ -1,16 +1,16 @@
-name: Deploy to GitHub Pages
+name: Deploy to UAT
 
 on: workflow_dispatch
 
 jobs:
-  push-to-branch:
+  merge-branch:
     runs-on: ubuntu-latest
     steps:
-      - name: Push to uat branch
-        uses: Automattic/action-commit-to-branch@master
+      - uses: actions/checkout@master
+
+      - name: Merge main -> uat
+        uses: devmasx/merge-branch@v1.4.0
         with:
-          dest_branch: 'uat'
-          source_branch: 'main'
-          commit_message: 'update UAT'
-        env:
-          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          type: now
+          target_branch: uat
+          github_token: ${{ github.token }}
