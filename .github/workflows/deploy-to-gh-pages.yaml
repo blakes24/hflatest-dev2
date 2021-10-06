@@ -17,5 +17,5 @@ jobs:
       env:
         REPO: self
         BRANCH: gh-pages
-        FOLDER: /
+        FOLDER: .
         GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
